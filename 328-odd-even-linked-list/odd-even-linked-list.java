@@ -38,10 +38,10 @@ class Solution {
         ListNode even = head.next;
         ListNode evenHead = head.next;
         while(even != null && even.next != null){
-            odd.next = even.next;     // connect odd to next odd
-            odd = odd.next;           // move odd forward
+            odd.next = odd.next.next;     
+            odd = odd.next;           
 
-            even.next = odd.next;     // connect even to next even
+            even.next = even.next.next;     
             even = even.next; 
 
 

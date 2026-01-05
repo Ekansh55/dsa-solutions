@@ -13,15 +13,14 @@ class Solution {
         ListNode temp = head;
         int c = 0;
         while(temp!=null&&c<k){
-            temp=temp.next;
             c++;
+            temp=temp.next;
         }
         if(c<k) return head;
-
+        c = 0;
         ListNode curr = head;
         ListNode prev = null;
         ListNode next = null;
-        c = 0;
         while(curr!=null&&c<k){
             next = curr.next;
             curr.next = prev;
@@ -30,9 +29,9 @@ class Solution {
             c++;
         }
         if(next!=null){
-            head.next = reverseKGroup(next,k);
-
+            head.next = reverseKGroup(curr,k);
         }
         return prev;
+
     }
 }

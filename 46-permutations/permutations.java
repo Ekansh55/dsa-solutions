@@ -1,31 +1,31 @@
 class Solution {
-    public void helper(int[] nums,int idx,List<List<Integer>> ans ){
-        int n = nums.length;
-        if(idx==n-1){
-            List<Integer> l = new ArrayList<>();
-            for(int i=0;i<n;i++){
-                l.add(nums[i]);
-            }
-            ans.add(l);
+    public void helper(int[] nums, List<Integer> curr, List<List<Integer>> ans) {
+        
+        // Base case
+        if(curr.size() == nums.length){
+            ans.add(new ArrayList<>(curr));
             return;
-
-        }
-        for(int i=idx;i<n;i++){
-            swap(i,idx,nums);
-            helper(nums,idx+1,ans);
-            swap(i,idx,nums);
         }
 
+        for(int i = 0; i < nums.length; i++){
+            
+            // skip if already used in current list
+            if(curr.contains(nums[i])) continue;
+
+            // choose
+            curr.add(nums[i]);
+
+            // explore
+            helper(nums, curr, ans);
+
+            // backtrack
+            curr.remove(curr.size() - 1);
+        }
     }
-    public void swap(int i,int j,int[] nums){
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
-    }
+
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
-        helper(nums,0,ans);
-        return ans; 
-
+        helper(nums, new ArrayList<>(), ans);
+        return ans;
     }
 }

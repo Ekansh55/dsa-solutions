@@ -15,13 +15,16 @@ class Solution {
         ListNode curr = head;
         set.add(curr.val);
         while(curr.next!=null){
-            if(set.contains(curr.next.val)) curr.next=curr.next.next;
+            if(set.contains(curr.next.val)){
+                curr.next=curr.next.next;
+            }
             else{
                 set.add(curr.next.val);
                 curr=curr.next;
-            }
             
+            } 
         }
         return head;
+        
     }
 }
